@@ -1,0 +1,84 @@
+cff-version: 1.2.0
+message: "If you use this artifact, please cite the archived software release and the associated MICRO 2026 paper."
+title: "NAQsim: Full-Stack Architecture Simulation Framework for Fast and Space-Efficient Neutral Atom Quantum Computing (Artifact)"
+abstract: >-
+  NAQsim is an architecture-level simulation framework for fault-tolerant
+  quantum computing with neutral-atom qubits. It models quantum-circuit
+  compilation and architecture execution to evaluate execution time,
+  logical-qubit footprint, and logical error rate. This artifact contains
+  the simulation, analysis, and post-processing resources used to reproduce
+  the numerical results reported in the associated MICRO 2026 paper.
+type: software
+authors:
+  - family-names: "Ueno"
+    given-names: "Yosuke"
+    affiliation: "NanoQT; RIKEN; The University of Tokyo"
+    email: "yosuke.ueno@riken.jp"
+  - family-names: "Sunami"
+    given-names: "Shinichi"
+    affiliation: "NanoQT; University of Oxford"
+    email: "shinichi.sunami@nano-qt.com"
+  - family-names: "Hinokuma"
+    given-names: "Toshihide"
+    affiliation: "NanoQT; Kyushu University"
+    email: "toshihide.hinokuma@nano-qt.com"
+  - family-names: "Suzuki"
+    given-names: "Yasunari"
+    affiliation: "RIKEN"
+    email: "yasunari.suzuki@riken.jp"
+  - family-names: "Goban"
+    given-names: "Akihisa"
+    affiliation: "NanoQT"
+    email: "akihisa.goban@nano-qt.com"
+  - family-names: "Yamasaki"
+    given-names: "Hayata"
+    affiliation: "NanoQT; The University of Tokyo"
+    email: "hayata.yamasaki@nano-qt.com"
+  - family-names: "Tanimoto"
+    given-names: "Teruo"
+    affiliation: "Kyushu University"
+    email: "tteruo@kyudai.jp"
+  - family-names: "Byun"
+    given-names: "Ilkwon"
+    affiliation: "Kyushu University"
+    email: "ilkwon@kyudai.jp"
+version: "0.1.0"
+license: MIT
+repository-code: "https://github.com/naqsim/naqsim"
+keywords:
+  - "neutral-atom quantum computing"
+  - "fault-tolerant quantum computing"
+  - "quantum computer architecture"
+  - "artifact evaluation"
+preferred-citation:
+  type: conference-paper
+  title: "NAQsim: Full-Stack Architecture Simulation Framework for Fast and Space-Efficient Neutral Atom Quantum Computing"
+  authors:
+    - family-names: "Ueno"
+      given-names: "Yosuke"
+      affiliation: "NanoQT; RIKEN; The University of Tokyo"
+    - family-names: "Sunami"
+      given-names: "Shinichi"
+      affiliation: "NanoQT; University of Oxford"
+    - family-names: "Hinokuma"
+      given-names: "Toshihide"
+      affiliation: "NanoQT; Kyushu University"
+    - family-names: "Suzuki"
+      given-names: "Yasunari"
+      affiliation: "RIKEN"
+    - family-names: "Goban"
+      given-names: "Akihisa"
+      affiliation: "NanoQT"
+    - family-names: "Yamasaki"
+      given-names: "Hayata"
+      affiliation: "NanoQT; The University of Tokyo"
+    - family-names: "Tanimoto"
+      given-names: "Teruo"
+      affiliation: "Kyushu University"
+    - family-names: "Byun"
+      given-names: "Ilkwon"
+      affiliation: "Kyushu University"
+  conference:
+    name: "59th IEEE/ACM International Symposium on Microarchitecture (MICRO 2026)"
+  year: 2026
+  status: in-press
