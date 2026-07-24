@@ -1,0 +1,8 @@
+hei 12
+fh 16
+jellium 12
+h4 4
+adder 4
+qft 4
+ising1d 4
+ising2d 2

@@ -1,0 +1,77 @@
+{
+    "qubit":{
+        "t2_idle_us": 10e6,
+        "t2_star_us": 10e6,
+        "t2_shutle_us": 10e6,
+        "atom_spacing_um_zone": 5,
+        "atom_spacing_um_select": 10
+    },
+
+    "operation":{
+        "sq_gate":{
+            "local":{
+                "latency_us": 1,
+                "error_rate": 1e-4
+            },
+            "global":{
+                "latency_us": 1,
+                "error_rate": 1e-4
+            }
+        },
+        "tq_gate":{
+            "local":{
+                "latency_us": 1,
+                "switching_us": 1,
+                "error_rate": 1e-3
+            },
+            "global":{
+                "latency_us": 1,
+                "error_rate": 1e-3
+            },
+            "basis": "CZ"
+        },
+        "d_measure":{
+            "local":{
+                "latency_us": 60,
+                "error_rate": 1e-3
+            },
+            "global":{
+                "latency_us": 40,
+                "error_rate": 1e-3
+            },
+            "basis": "MZ"
+        },
+        "nd_measure":{
+            "global":{
+                "latency_us": 100,
+                "error_rate": 1e-3
+            },
+            "local":{
+                "latency_us": 100,
+                "error_rate": 1e-3
+            },
+            "basis": "MZ"
+        },
+        "reset":{
+            "local":{
+                "latency_us": 100,
+                "error_rate": 1e-3
+            },
+            "global":{
+                "latency_us": 100,
+                "error_rate": 1e-3
+            },
+            "basis": "RZ"
+        },
+        "transfer":{
+            "latency_us": 120,
+            "error_rate": 1e-3
+        },
+        "slm_reconf":{
+            "latency_us": 1000
+        },
+        "slm_onoff":{
+            "latency_us": 10
+        }
+    }
+}

@@ -1,0 +1,5 @@
+grids:
+  - type: plane
+    coord: [1, 1, 0]
+    magic_factory: []
+    qubit: []

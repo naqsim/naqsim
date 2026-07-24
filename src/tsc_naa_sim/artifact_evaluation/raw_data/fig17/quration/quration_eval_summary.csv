@@ -1,0 +1,9 @@
+ham_name,beats,idle_counts,occupied_cell_counts,space_time_volume,chip_width,chip_height,chip_depth
+SELECT_6_FermiHubbard2D_cylinder_0_0,76174,6186711,1336811,7523522,18,23,0
+SELECT_2_Jellium3D_OBC_0_0,124275,5064043,1570782,6634825,12,15,0
+SELECT_4_Hydrogen2x2_OBC_0_0,15472,406877,154563,561440,10,13,0
+SELECT_12_Heisenberg2D_cylinder_0.5_0.5,59323,7976140,1463682,9439822,24,29,0
+adder_64q_basis_err1em3,38751,1307972,151716,1459688,16,17,0
+ising_1d_64q_basis_err1em3,81881,4712204,554524,5266728,16,17,0
+ising_2d_64q_basis_err1em3,96126,5632331,865143,6497474,16,17,0
+qft_29q_basis_err1em3,97361,1841576,496811,2338387,10,13,0

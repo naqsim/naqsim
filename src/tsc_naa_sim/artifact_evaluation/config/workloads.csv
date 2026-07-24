@@ -1,0 +1,9 @@
+key,label,ham_name,logical_qubits,loop_count,transversal_distance,ls_distance,fig19,num_threads
+hei,Hei (144),SELECT_12_Heisenberg2D_cylinder_0.5_0.5,167,48067,23,27,1,12
+fh,FH (72),SELECT_6_FermiHubbard2D_cylinder_0_0,95,56549,23,27,1,16
+jellium,Jellium (18),SELECT_2_Jellium3D_OBC_0_0,41,38075,23,27,1,12
+h4,H4 (18),SELECT_4_Hydrogen2x2_OBC_0_0,27,975,17,21,1,4
+adder,adder (64),adder_64q_basis_err1em3,64,1,13,17,0,4
+qft,qft (29),qft_29q_basis_err1em3,29,1,15,19,0,4
+ising1d,Ising1d (64),ising_1d_64q_basis_err1em3,64,1,15,19,0,4
+ising2d,Ising2d (64),ising_2d_64q_basis_err1em3,64,1,17,21,0,2

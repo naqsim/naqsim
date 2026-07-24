@@ -1,0 +1,31 @@
+[project]
+name = "dqc-naa-sim"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "graphviz==0.21",
+    "ipykernel==7.2.0",
+    "ipython==9.11.0",
+    "matplotlib==3.10.8",
+    "numpy==2.2.0",
+    "pandas==2.3.3",
+    "pip==26.0.1",
+    "plotly==6.6.0",
+    "pygridsynth==2.0.0",
+    "pylatexenc==2.10",
+    "pymatching==2.3.1",
+    "pyyaml==6.0.3",
+    "qiskit==2.3.1",
+    "qiskit-aer==0.17.2",
+    "qiskit-ibm-provider==0.11.0",
+    "qiskit-ibm-runtime==0.46.1",
+    "rustworkx==0.17.1",
+    "stim==1.16.dev1773248378",
+    "stimbposd==0.1.0",
+    "streamlit==1.55.0",
+    "supermarq==0.5.66",
+    "tqdm==4.67.3",
+    "zstandard==0.25.0",
+]

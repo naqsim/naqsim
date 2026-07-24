@@ -1,0 +1,8 @@
+src/*/__pycache__/
+src/tsc_naa_sim/output/*
+*/.cache/
+__pycache__/
+*.csv
+*.pdf
+*.png
+uv.lock
