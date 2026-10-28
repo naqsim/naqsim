@@ -151,10 +151,41 @@ class tsc_inst_scheduler:
         req_queue = deque((i, self.dag[i]) for _, i in sorted(zip(depth_list, req_indices), reverse=True))
         return req_queue
 
-    def get_ready_insts(self):
-        ready_indices = sorted(self.ready_indices)
-        ready_nodes = [self.dag[i] for i in ready_indices]
-        return list(zip(ready_indices, ready_nodes))
+    def get_ready_insts(self, include_requests=True):
+        # Preserve the old sorted *snapshot* traversal. Only the queue head
+        # can allocate a resource, so skip all other ready requests. After a
+        # successful allocation the next head may still be visited in this
+        # pass, but only if it was ready at snapshot time and its ID is larger
+        # than the cursor. Newly ready nodes and earlier IDs wait for the next
+        # pass, exactly as they did in the original materialized list.
+        snapshot_epoch = self.ready_epoch
+        normal = iter(sorted(self.ready_nonrequest_indices))
+        next_normal = next(normal, None)
+        cursor = -1
+        while True:
+            request_id = None
+            if include_requests and self.req_queue:
+                head_id = self.req_queue[0][0]
+                epoch = self.ready_request_epochs.get(head_id)
+                if epoch is not None and epoch <= snapshot_epoch and head_id > cursor:
+                    request_id = head_id
+            if next_normal is None and request_id is None:
+                return
+            if request_id is not None and (next_normal is None or request_id < next_normal):
+                cursor = request_id
+                yield cursor, self.dag[cursor]
+            else:
+                cursor = next_normal
+                yield cursor, self.dag[cursor]
+                next_normal = next(normal, None)
+
+    def add_ready_node(self, node_id):
+        self.ready_indices.add(node_id)
+        self.ready_epoch += 1
+        if self.dag[node_id].inst_type in (InstType.REQ_MY, InstType.REQ_Y, InstType.REQ_M):
+            self.ready_request_epochs[node_id] = self.ready_epoch
+        else:
+            self.ready_nonrequest_indices.add(node_id)
 
     def init_ready_tracker(self):
         node_indices = list(self.dag.node_indices())
@@ -162,15 +193,19 @@ class tsc_inst_scheduler:
             i: self.dag.in_degree(i)
             for i in node_indices
         }
-        self.ready_indices = {
-            i
-            for i, degree in self.remaining_in_degrees.items()
-            if degree == 0
-        }
+        self.ready_indices = set()
+        self.ready_nonrequest_indices = set()
+        self.ready_request_epochs = {}
+        self.ready_epoch = 0
+        for i, degree in self.remaining_in_degrees.items():
+            if degree == 0:
+                self.add_ready_node(i)
 
     def remove_ready_node(self, node_id):
         successor_indices = list(self.dag.successor_indices(node_id))
         self.ready_indices.discard(node_id)
+        self.ready_nonrequest_indices.discard(node_id)
+        self.ready_request_epochs.pop(node_id, None)
         del self.remaining_in_degrees[node_id]
 
         for successor_id in successor_indices:
@@ -178,7 +213,7 @@ class tsc_inst_scheduler:
                 continue
             self.remaining_in_degrees[successor_id] -= 1
             if self.remaining_in_degrees[successor_id] == 0:
-                self.ready_indices.add(successor_id)
+                self.add_ready_node(successor_id)
 
         self.dag.remove_node(node_id)
 
@@ -263,7 +298,7 @@ class tsc_inst_scheduler:
             ## MEAS_Z, MEAS_XorZ, TRANS_H, TRANS_CX
             ## MEAS_RESET_Z added
             inst_to_be_scheduled = []
-            for id, nd in self.get_ready_insts():
+            for id, nd in self.get_ready_insts(include_requests=False):
                 if nd.inst_type in [InstType.MEAS_Z,
                                     InstType.MEAS_XorZ,
                                     InstType.MEAS_RESET_Z,
